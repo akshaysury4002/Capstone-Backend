@@ -3,12 +3,13 @@ spring:
     url: jdbc:mysql://localhost:3306/finance
     username: root
     password: alfared
-  server:
-    port: 8080
   jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          format_sql: true
+
+springdoc:
+  api-docs:
+    path: /api-docs

@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class LoginMesage {
+public class AppResponse {
     String message;
     Boolean status;
 
