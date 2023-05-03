@@ -9,16 +9,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Objects;
-
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 @Table(name = "users")
 public class User {
 
@@ -39,33 +41,5 @@ public class User {
 
     private boolean loggedIn;
 
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", loggedIn=" + loggedIn +
-                '}';
-    }
 }

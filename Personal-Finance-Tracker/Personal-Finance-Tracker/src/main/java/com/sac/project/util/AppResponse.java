@@ -1,18 +1,14 @@
 package com.sac.project.util;
 
-
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 @Setter
 @Getter
-public class AppResponse {
-    String message;
-    Boolean status;
-
-
+public class AppResponse<T> {
+    private String sts;
+    private String msg;
+    private T bd;
 }
