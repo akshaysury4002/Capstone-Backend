@@ -1,59 +1,36 @@
 package com.sac.project.controller;
 
+import com.sac.project.dto.UserDTO;
+import com.sac.project.service.UserService;
+import com.sac.project.util.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.sac.project.repository.UserRepository;
-import com.sac.project.util.Status;
-import com.sac.project.domain.User;
-
 import javax.validation.Valid;
-import java.util.List;
+@CrossOrigin
 @RestController
+@RequestMapping("")
 public class UserController {
+
+    private final UserService userService;
+
     @Autowired
-    UserRepository userRepository;
-    @PostMapping("/users/register")
-    public Status registerUser(@Valid @RequestBody User newUser) {
-        List<User> users = userRepository.findAll();
-        System.out.println("New user: " + newUser.toString());
-        for (User user : users) {
-            System.out.println("Registered user: " + newUser.toString());
-            if (user.equals(newUser)) {
-                System.out.println("User Already exists!");
-                return Status.USER_ALREADY_EXISTS;
-            }
-        }
-        userRepository.save(newUser);
-        return Status.SUCCESS;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
-    @PostMapping("/users/login")
-    public Status loginUser(@Valid @RequestBody User user) {
-        List<User> users = userRepository.findAll();
-        for (User other : users) {
-            if (other.equals(user)) {
-                user.setLoggedIn(true);
-                userRepository.save(user);
-                return Status.SUCCESS;
-            }
-        }
-        return Status.FAILURE;
+
+    @PostMapping("/register")
+    public Status registerUser(@Valid @RequestBody UserDTO userDto) {
+        return userService.registerUser(userDto);
     }
-    @PostMapping("/users/logout")
-    public Status logUserOut(@Valid @RequestBody User user) {
-        List<User> users = userRepository.findAll();
-        for (User other : users) {
-            if (other.equals(user)) {
-                user.setLoggedIn(false);
-                userRepository.save(user);
-                return Status.SUCCESS;
-            }
-        }
-        return Status.FAILURE;
+
+    @PostMapping("/login")
+    public Status loginUser(@Valid @RequestBody UserDTO userDto) {
+        return userService.loginUser(userDto);
     }
-    @DeleteMapping("/users/all")
-    public Status deleteUsers() {
-        userRepository.deleteAll();
-        return Status.SUCCESS;
+
+    @PostMapping("/logout")
+    public Status logUserOut(@Valid @RequestBody UserDTO userDto) {
+        return userService.logUserOut(userDto);
     }
 }
