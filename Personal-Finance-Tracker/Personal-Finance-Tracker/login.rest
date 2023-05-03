@@ -2,9 +2,10 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-"username": "test",
-"password": "test"
+"username": "getwell",
+"password": ""
 }
 
 ###
 DELETE http://localhost:8080/users/all
+
