@@ -18,7 +18,7 @@ POST http://localhost:8080/finance/user
 Content-Type: application/json
 
 {
-  "userId": 6,
+  "userId": 1,
   "id": 8,
   "financeType": "INCOME",
   "tag": "salary",

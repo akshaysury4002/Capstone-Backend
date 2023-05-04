@@ -3,7 +3,17 @@ Content-Type: application/json
 
 {
 "name":"gettok",
-"email": "user3id1@gmail.com",
+"email": "ussser3323id1@gmail.com",
+"password": "yello"
+}
+
+###
+POST http://localhost:8080/users/register
+Content-Type: application/json
+
+{
+"name":"gettok",
+"email": "userid1@gmail.com",
 "password": "yello"
 }
 

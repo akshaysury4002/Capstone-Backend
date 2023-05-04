@@ -48,6 +48,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Finance> finance;
 
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Savings> saving;
+
 
 
 }

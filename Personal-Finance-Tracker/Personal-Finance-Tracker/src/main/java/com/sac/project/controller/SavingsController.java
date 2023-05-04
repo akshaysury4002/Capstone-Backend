@@ -17,26 +17,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sac.project.dto.FinanceDto;
-import com.sac.project.dto.FinanceUserDto;
-import com.sac.project.service.FinanceService;
+import com.sac.project.dto.SavingsDto;
+import com.sac.project.dto.SavingsUserDto;
+import com.sac.project.service.SavingsService;
 import com.sac.project.util.AppResponse;
 
 import lombok.AllArgsConstructor;
 
 @CrossOrigin
 @AllArgsConstructor
-@RequestMapping(value = "/finance")
+@RequestMapping(value = "/savings")
 @RestController
-public class FinanceController {
+public class SavingsController {
 
-    private final FinanceService service;
+    private final SavingsService service;
     
     @CrossOrigin
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> createNewFinance(@Valid @RequestBody FinanceDto dto) {
+    public ResponseEntity<AppResponse<Integer>> createNewSavings( @RequestBody SavingsDto dto) {
 
-        final Integer sts = service.createNewFinance(dto);
+        final Integer sts = service.createNewSavings(dto);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
@@ -49,9 +49,9 @@ public class FinanceController {
 
     @CrossOrigin
     @PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> createNewCustomerInvoice(@Valid @RequestBody FinanceUserDto dto) {
+    public ResponseEntity<AppResponse<Integer>> createNewUSerSavings(@Valid @RequestBody SavingsUserDto dto) {
 
-        final Integer sts = service.createNewFinance(dto);
+        final Integer sts = service.createNewSavings(dto);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
@@ -63,12 +63,12 @@ public class FinanceController {
 
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<FinanceDto>>> allFinances() {
-        List<FinanceDto> finances = service.all();
+    public ResponseEntity<AppResponse<List<SavingsDto>>> allSavings() {
+        List<SavingsDto> finances = service.all();
 
-        AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
+        AppResponse<List<SavingsDto>> response = AppResponse.<List<SavingsDto>>builder()
                                                             .sts("success")
-                                                            .msg("finances")
+                                                            .msg("this ones working")
                                                             .bd(finances)
                                                             .build();
 
@@ -76,9 +76,9 @@ public class FinanceController {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> deleteInvoice(@PathVariable Long id) {
+    public ResponseEntity<AppResponse<Integer>> deleteSavings(@PathVariable Long id) {
 
-        final Integer sts = service.deleteFinance(id);
+        final Integer sts = service.deleteSavings(id);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
             .sts("success")
@@ -90,11 +90,11 @@ public class FinanceController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<AppResponse<FinanceDto>> getFinanceById(@PathVariable Long id) {
+    public ResponseEntity<AppResponse<SavingsDto>> getSavingsById(@PathVariable Long id) {
 
-        final FinanceDto dto = service.fetchFinanceDetails(id);
+        final SavingsDto dto = service.fetchSavingsDetails(id);
 
-        final AppResponse<FinanceDto> response = AppResponse.<FinanceDto>builder()
+        final AppResponse<SavingsDto> response = AppResponse.<SavingsDto>builder()
                                                         .sts("success")
                                                         .msg("FInancial Details")
                                                         .bd(dto)
@@ -103,13 +103,13 @@ public class FinanceController {
     }
 
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<FinanceDto>>> allCustomerInvoices(@PathVariable Long id) {
-        List<FinanceDto> invoices = service.allUserFInances(id);
+    public ResponseEntity<AppResponse<List<SavingsDto>>> allUserSavings(@PathVariable Long id) {
+        List<SavingsDto> savings = service.allUserSavings(id);
 
-        AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
+        AppResponse<List<SavingsDto>> response = AppResponse.<List<SavingsDto>>builder()
                                                             .sts("success")
                                                             .msg("Users FInacne")
-                                                            .bd(invoices)
+                                                            .bd(savings)
                                                             .build();
 
         return ResponseEntity.ok().body(response);
@@ -117,9 +117,9 @@ public class FinanceController {
 
     @CrossOrigin
     @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> updateNewInvoice(@Valid @RequestBody FinanceDto dto) {
+    public ResponseEntity<AppResponse<Integer>> updateNewSavings(@Valid @RequestBody SavingsDto dto) {
 
-        final Integer sts = service.updateFinance(dto);
+        final Integer sts = service.updateSavings(dto);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
@@ -130,3 +130,4 @@ public class FinanceController {
         return ResponseEntity.ok().body(response);
     }
 }
+
