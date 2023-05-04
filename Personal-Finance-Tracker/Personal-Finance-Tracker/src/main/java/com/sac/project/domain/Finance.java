@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import com.sac.project.util.FinanceType;
 
@@ -25,7 +30,7 @@ import lombok.ToString;
 
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor()
+@AllArgsConstructor
 @ToString
 @Setter
 @Getter
@@ -36,16 +41,28 @@ public class Finance {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+    
+    @NotNull(message = "Finance type cannot be null")
     @Column(name = "income_expenses")
     @Enumerated(EnumType.STRING)
     private FinanceType financeType;
+    
+    @NotBlank(message = "Tag cannot be blank")
+    @Size(min = 3, max = 50, message = "Tag must be between 3 and 50 characters long")
     @Column(name = "tag")
     private String tag;
+    
+    @NotNull(message = "Processed date cannot be null")
+    @PastOrPresent(message = "Processed date cannot be in the future")
     @Column(name = "processed_date")
     private LocalDate processedDate;
+    
+    @NotNull(message = "Amount cannot be null")
+    @Positive(message = "Amount must be positive")
     @Column(name = "amount")
     private Double amount;
+    
     @ManyToOne
-    @JoinColumn(name = "userId",nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;   
 }
