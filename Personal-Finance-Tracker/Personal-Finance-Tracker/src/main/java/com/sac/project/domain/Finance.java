@@ -47,6 +47,5 @@ public class Finance {
     private Double amount;
     @ManyToOne
     @JoinColumn(name = "userId",nullable = false)
-    private User user;
-    
+    private User user;   
 }
