@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
 "name":"gettok",
-"email": "getw2ell1@gmail.com",
+"email": "user3id1@gmail.com",
 "password": "yello"
 }
 

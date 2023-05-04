@@ -10,13 +10,14 @@ public class UserMapper {
 
     public User toDomain(UserDTO dto) {
         return User.builder()
-                .name(dto.getName())
+        .id(dto.getId())
+        .name(dto.getName())
                 .email(dto.getEmail())
                 .password(dto.getPassword())
                 .build();
     }
 
     public UserDTO toDto(User domain) {
-        return new UserDTO( domain.getName(), domain.getEmail(), domain.getPassword());
+        return new UserDTO(domain.getId(), domain.getName(), domain.getEmail(), domain.getPassword());
     }
 }

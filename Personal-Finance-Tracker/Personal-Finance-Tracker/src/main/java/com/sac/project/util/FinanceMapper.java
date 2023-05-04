@@ -16,11 +16,11 @@ public class FinanceMapper {
 
     public Finance toDomain(FinanceDto dto) {
         return Finance.builder()
-                .amt(dto.getAmt())
+                .amount(dto.getAmt())
                 .tag(dto.getTag())
                 .id(dto.getId())
                 .financeType(dto.getFinanceType())
-                .invDt(dto.getInvDt())
+                .processedDate(dto.getInvDt())
                 .user(userMapper.toDomain(dto.getUserDto()))
                 .build();
     }
@@ -30,8 +30,8 @@ public class FinanceMapper {
                 domain.getId(),
                 domain.getFinanceType(),
                 domain.getTag(),
-                domain.getInvDt(),
-                domain.getAmt(),
+                domain.getProcessedDate(),
+                domain.getAmount(),
                 userMapper.toDto(domain.getUser()));
     }
 }

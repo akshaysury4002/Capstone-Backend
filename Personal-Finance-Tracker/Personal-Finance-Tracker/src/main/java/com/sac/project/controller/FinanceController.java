@@ -32,13 +32,13 @@ public class FinanceController {
     
     @CrossOrigin
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> createNewFinanc(@RequestBody FinanceDto dto) {
+    public ResponseEntity<AppResponse<Integer>> createNewFinance(@RequestBody FinanceDto dto) {
 
         final Integer sts = service.createNewFinance(dto);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
-                                                    .msg("Report Created Successfully")
+                                                    .msg("finance added Successfully")
                                                     .bd(sts)
                                                     .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -53,7 +53,7 @@ public class FinanceController {
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
-                                                    .msg("Invoice Created Successfully")
+                                                    .msg("Finance added Successfully")
                                                     .bd(sts)
                                                     .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -61,13 +61,13 @@ public class FinanceController {
 
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<FinanceDto>>> allInvoices() {
-        List<FinanceDto> invoices = service.all();
+    public ResponseEntity<AppResponse<List<FinanceDto>>> allFinances() {
+        List<FinanceDto> finances = service.all();
 
         AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
                                                             .sts("success")
-                                                            .msg("Invoices")
-                                                            .bd(invoices)
+                                                            .msg("finances")
+                                                            .bd(finances)
                                                             .build();
 
         return ResponseEntity.ok().body(response);
@@ -80,7 +80,7 @@ public class FinanceController {
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
             .sts("success")
-            .msg("Invoice Deleted Successfully")
+            .msg("Finance Deleted Successfully")
             .bd(sts)
             .build();
 
@@ -88,13 +88,13 @@ public class FinanceController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<AppResponse<FinanceDto>> getInvoiceById(@PathVariable Long id) {
+    public ResponseEntity<AppResponse<FinanceDto>> getFinanceById(@PathVariable Long id) {
 
         final FinanceDto dto = service.fetchFinanceDetails(id);
 
         final AppResponse<FinanceDto> response = AppResponse.<FinanceDto>builder()
                                                         .sts("success")
-                                                        .msg("Invoice Details")
+                                                        .msg("FInancial Details")
                                                         .bd(dto)
                                                         .build();
         return ResponseEntity.ok().body(response);
@@ -106,7 +106,7 @@ public class FinanceController {
 
         AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
                                                             .sts("success")
-                                                            .msg("Customer Invoices")
+                                                            .msg("Users FInacne")
                                                             .bd(invoices)
                                                             .build();
 
@@ -121,7 +121,7 @@ public class FinanceController {
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
-                                                    .msg("Invoice Updated Successfully")
+                                                    .msg("Finance Updated Successfully")
                                                     .bd(sts)
                                                     .build();
 

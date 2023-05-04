@@ -67,11 +67,11 @@ public class FinanceServiceImpl implements FinanceService {
                                         .orElseThrow(() -> new UserNotFoundException("User Not Found"));
 
         Finance finance = new Finance();
-        finance.setAmt(dto.getAmt());
+        finance.setAmount(dto.getAmt());
         finance.setFinanceType(dto.getFinanceType());
         finance.setId(dto.getUserId());
         finance.setTag(dto.getTag());
-        finance.setInvDt(dto.getInvDt());
+        finance.setProcessedDate(dto.getInvDt());
         finance.setUser(user);
 
         repository.save(finance);

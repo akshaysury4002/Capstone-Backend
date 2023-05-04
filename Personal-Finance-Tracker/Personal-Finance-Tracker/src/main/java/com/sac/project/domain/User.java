@@ -1,8 +1,13 @@
 package com.sac.project.domain;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -19,8 +24,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
+@Builder
 @Table(name = "users")
 public class User {
 
@@ -40,6 +45,10 @@ public class User {
     private String password;
 
     private boolean loggedIn;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Finance> finance;
+
 
 
 }

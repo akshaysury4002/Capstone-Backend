@@ -1,9 +1,41 @@
+
+###
+POST http://localhost:8080/finance/user
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "id": 8,
+  "financeType": "EXPENSES",
+  "tag": "investment",
+  "invDt": "2023-12-23",
+  "amt": 2300
+}
+
+###
+POST http://localhost:8080/finance/user
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "id": 8,
+  "financeType": "INCOME",
+  "tag": "salary",
+  "invDt": "2023-12-23",
+  "amt": 12300
+}
+###
+GET http://localhost:8080/finance/
+
+
+
+
 ### Create New Account
-POST http://localhost:8080/finance/ HTTP/1.1 
+POST http://localhost:8080/finance/user
 content-type: application/json
 
 {
-
+    "id":1,
     "financetye" : "zwr", 
      "tag":"investment",
     "invDt" : "2020-01-01",
@@ -11,11 +43,12 @@ content-type: application/json
 }
 
 ### Create New Invoice with Customer
-POST http://localhost:8080/finance/user HTTP/1.1 
+POST http://localhost:8080/finance/user/ HTTP/1.1 
 content-type: application/json
 
-{
-    "client" : "Paytm", 
+{   "id":1,
+    "financetype":"expense",
+    "tag" : "Paytm", 
     "invDt" : "2020-01-01",
     "amt" : 1800,
     "customerId" : 1
@@ -24,16 +57,25 @@ content-type: application/json
 
 ### Get All Invoices
 GET http://localhost:8080/finance/
+content-type: application/json
+
+{
+    "financetype":"expense",
+    "tag" : "Paytm", 
+    "invDt" : "2020-01-01",
+    "amt" : 1800,
+    "customerId" : 1
+}
 
 ### Delete Invoice By Id
-DELETE http://localhost:8080/invoice/1
+DELETE http://localhost:8080/finance/users
 
 ### Invoice By Id
-GET http://localhost:8080/invoice/7
+GET http://localhost:8080/finance/7
 
 ### Create New Account
 
-PUT http://localhost:8080/invoice/ HTTP/1.1 
+PUT http://localhost:8080/finance/ HTTP/1.1 
 content-type: application/json
 
 {
@@ -44,5 +86,5 @@ content-type: application/json
 }
 
 ### List All Customer Invoices
-GET http://localhost:8080/invoice/customer/2
+GET http://localhost:8080/finance/users/17
 

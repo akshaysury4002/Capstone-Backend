@@ -1,5 +1,7 @@
 package com.sac.project.dto;
 
+import java.util.Optional;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +18,8 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class UserDTO {
+
+    private long id;
     @NotBlank(message = "Name is mandatory")
     private String name;
 
@@ -26,5 +30,7 @@ public class UserDTO {
     @NotNull(message = "Password is mandatory")
     @Size(min = 8, max = 16, message = "Password must be between 8 and 16 characters")
     private String password;
+
+
 }
 
