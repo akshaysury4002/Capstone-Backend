@@ -16,6 +16,7 @@ import com.sac.project.exception.UserNotFoundException;
 import com.sac.project.repository.FinanceRepository;
 import com.sac.project.repository.UserRepository;
 import com.sac.project.util.FinanceMapper;
+import com.sac.project.util.FinanceType;
 
 import lombok.AllArgsConstructor;
 
@@ -78,6 +79,12 @@ public class FinanceServiceImpl implements FinanceService {
 
         return 1;
     }
+
+    @Override
+    public Double getTotalIncome() {
+        return repository.getTotalAmountByType(FinanceType.INCOME);
+    }
+    
 
     @Override
     public List<FinanceDto> allUserFInances(Long id) throws UserNotFoundException {

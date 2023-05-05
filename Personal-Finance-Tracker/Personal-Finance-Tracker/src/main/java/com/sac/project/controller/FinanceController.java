@@ -115,6 +115,14 @@ public class FinanceController {
         return ResponseEntity.ok().body(response);
     }
 
+
+
+    @GetMapping("/total-income")
+    public Double getTotalIncome() {
+        return service.getTotalIncome();
+    }
+
+
     @CrossOrigin
     @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> updateNewInvoice(@Valid @RequestBody FinanceDto dto) {

@@ -4,7 +4,7 @@ POST http://localhost:8080/finance/user
 Content-Type: application/json
 
 {
-  "userId": 6,
+  "userId": 1,
   "id": 8,
   "financeType": "EXPENSES",
   "tag": "investment",
@@ -18,7 +18,7 @@ POST http://localhost:8080/finance/user
 Content-Type: application/json
 
 {
-  "userId": 5,
+  "userId": 1,
   "id": 8,
   "financeType": "INCOME",
   "tag": "salary",
@@ -34,3 +34,8 @@ GET http://localhost:8080/finance/
 ### Specific Finance 
 GET http://localhost:8080/finance/user/11
 
+###
+GET http://localhost:8080/budget/income/salary/sum
+
+###
+GET http://localhost:8080/finance/total-income
