@@ -5,6 +5,7 @@ import java.util.List;
 import com.sac.project.domain.User;
 import com.sac.project.dto.FinanceDto;
 import com.sac.project.exception.UserNotFoundException;
+import com.sac.project.util.FinanceType;
 import com.sac.project.exception.FinanceNotFoundException;
 import com.sac.project.dto.FinanceUserDto;
 
@@ -29,9 +30,8 @@ public interface FinanceService {
 
 
     Double getTotalIncomeByTagAndUser(String tag, Long userID);
-    List<Object[]> findTotalAmountByTagAndType();
+    List<Object[]> findTotalAmountByTagAndType(FinanceType financeType);
 
-    
 
     
 }

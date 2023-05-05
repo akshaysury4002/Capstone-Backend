@@ -1,6 +1,6 @@
 package com.sac.project.controller;
 
-import java.security.Principal;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sac.project.domain.User;
 import com.sac.project.dto.FinanceDto;
 import com.sac.project.dto.FinanceUserDto;
+import com.sac.project.repository.FinanceRepository;
 import com.sac.project.service.FinanceService;
 import com.sac.project.service.UserService;
 import com.sac.project.util.AppResponse;
@@ -36,6 +37,7 @@ import lombok.AllArgsConstructor;
 public class FinanceController {
 
     private final FinanceService service;
+    private final FinanceRepository repository;
 
     
     @CrossOrigin
@@ -137,10 +139,16 @@ public class FinanceController {
         return service.getTotalExpenses();
     }
 
-    @GetMapping("/tag")
-    public ResponseEntity<List<Object[]>> getIncomeByTag() {
-        List<Object[]> result = service.findTotalAmountByTagAndType();
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    @CrossOrigin
+    @GetMapping(value = "/tag", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<Object[]>>> getFinanceByTag(@PathVariable Long userId) {
+        List<Object[]> result = service.findTotalAmountByTagAndType(FinanceType.INCOME);
+        AppResponse<List<Object[]>> response = AppResponse.<List<Object[]>>builder()
+                                                        .sts("success")
+                                                        .msg("Total amount by tag")
+                                                        .bd(result)
+                                                        .build();
+        return ResponseEntity.ok().body(response);
     }
 
 

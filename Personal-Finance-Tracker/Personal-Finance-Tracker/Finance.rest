@@ -44,4 +44,4 @@ GET http://localhost:8080/finance/total-income
 GET http://localhost:8080/finance/total-expenses
 
 ###
-GET http://localhost:8080/finance/tag
+GET http://localhost:8080/finance/summary

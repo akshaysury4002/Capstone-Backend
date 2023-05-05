@@ -29,8 +29,13 @@ public interface FinanceRepository extends JpaRepository<Finance, Long> {
 
     @Query("SELECT f.financeType, f.tag, SUM(f.amount) "
     + "FROM Finance f "
-    + "WHERE f.financeType = 'INCOME' "
+    + "WHERE f.financeType = :type "
     + "GROUP BY f.financeType, f.tag")
-List<Object[]> findTotalAmountByTagAndType();
+    List<Object[]> findTotalAmountByTagAndType(@Param("type") FinanceType type);
+
 
 }
+
+
+
+

@@ -1,5 +1,6 @@
 package com.sac.project.util;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.sac.project.domain.Savings;
@@ -15,23 +16,16 @@ public class SavingsMapper {
     }
 
     public Savings toDomain(SavingsDto dto) {
-        return Savings.builder()
-                .category(dto.getCategory())
-                .goal(dto.getGoal())
-                .currAmt(dto.getCurrAmt())
-                .target(dto.getTarget())
-                .processedDate(dto.getProcessedDate())
-                .build();
+        Savings domain = new Savings();
+        BeanUtils.copyProperties(dto, domain);
+        domain.setUser(userMapper.toDomain(dto.getUserDto()));
+        return domain;
     }
 
     public SavingsDto toDto(Savings domain) {
-        return new SavingsDto(
-                domain.getId(),
-                domain.getCategory(),
-                domain.getGoal(),
-                domain.getCurrAmt(),
-                domain.getTarget(),
-                domain.getProcessedDate(),
-                userMapper.toDto(domain.getUser()));
+        SavingsDto dto = new SavingsDto();
+        BeanUtils.copyProperties(domain, dto);
+        dto.setUserDto(userMapper.toDto(domain.getUser()));
+        return dto;
     }
 }

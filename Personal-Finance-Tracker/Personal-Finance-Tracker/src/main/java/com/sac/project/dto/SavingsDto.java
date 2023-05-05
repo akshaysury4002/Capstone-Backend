@@ -49,5 +49,5 @@ public class SavingsDto {
 
     @NotNull(message = "User is required")
     private UserDTO userDto;
-    
+
 }

@@ -1,5 +1,7 @@
 package com.sac.project.service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -95,11 +97,11 @@ public class FinanceServiceImpl implements FinanceService {
     public Double getTotalIncomeByTagAndUser(String tag, Long userId) {
         return repository.getTotalAmountByTypeAndTagAndUser(FinanceType.INCOME, tag, userId);
 }
+@Override
+public List<Object[]> findTotalAmountByTagAndType(FinanceType financeType){
+return repository.findTotalAmountByTagAndType(FinanceType.INCOME);
+}
 
-    @Override
-    public List<Object[]> findTotalAmountByTagAndType() {
-        return repository.findTotalAmountByTagAndType();
-    }
 
 
 
