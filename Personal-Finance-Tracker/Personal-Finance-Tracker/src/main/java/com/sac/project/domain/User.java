@@ -51,6 +51,16 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<Savings> saving;
 
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Profile> profile;
+    
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Budget> budget ;
 
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<LinkedAccounts> account ;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<LinkedCards> card ;
 
 }
