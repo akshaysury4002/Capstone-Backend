@@ -1,5 +1,6 @@
 package com.sac.project.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,12 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sac.project.domain.User;
 import com.sac.project.dto.FinanceDto;
 import com.sac.project.dto.FinanceUserDto;
 import com.sac.project.service.FinanceService;
+import com.sac.project.service.UserService;
 import com.sac.project.util.AppResponse;
+import com.sac.project.util.FinanceType;
 
 import lombok.AllArgsConstructor;
 
@@ -31,6 +36,7 @@ import lombok.AllArgsConstructor;
 public class FinanceController {
 
     private final FinanceService service;
+
     
     @CrossOrigin
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -61,8 +67,8 @@ public class FinanceController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    @GetMapping(value = "/user-finances", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<List<FinanceDto>>> allFinances() {
         List<FinanceDto> finances = service.all();
 
@@ -75,6 +81,8 @@ public class FinanceController {
         return ResponseEntity.ok().body(response);
     }
 
+
+    @CrossOrigin
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> deleteInvoice(@PathVariable Long id) {
 
@@ -101,15 +109,17 @@ public class FinanceController {
                                                         .build();
         return ResponseEntity.ok().body(response);
     }
-
+    
+    
+    @CrossOrigin
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<FinanceDto>>> allCustomerInvoices(@PathVariable Long id) {
-        List<FinanceDto> invoices = service.allUserFInances(id);
+    public ResponseEntity<AppResponse<List<FinanceDto>>> allCustomerFinances(@PathVariable Long id) {
+        List<FinanceDto> finances = service.allUserFInances(id);
 
         AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
                                                             .sts("success")
                                                             .msg("Users FInacne")
-                                                            .bd(invoices)
+                                                            .bd(finances)
                                                             .build();
 
         return ResponseEntity.ok().body(response);
@@ -122,10 +132,21 @@ public class FinanceController {
         return service.getTotalIncome();
     }
 
+    @GetMapping("/total-expenses")
+    public Double getTotalExpenses() {
+        return service.getTotalExpenses();
+    }
+
+    @GetMapping("/tag")
+    public ResponseEntity<List<Object[]>> getIncomeByTag() {
+        List<Object[]> result = service.findTotalAmountByTagAndType();
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 
     @CrossOrigin
     @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> updateNewInvoice(@Valid @RequestBody FinanceDto dto) {
+    public ResponseEntity<AppResponse<Integer>> updateNewFinance(@Valid @RequestBody FinanceDto dto) {
 
         final Integer sts = service.updateFinance(dto);
 
