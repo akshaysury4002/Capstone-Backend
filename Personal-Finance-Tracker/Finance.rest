@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "userId": 1,
-  "id": 8,
+  "id": 10,
   "financeType": "EXPENSES",
   "tag": "investment",
   "invDt": "2023-12-23",
@@ -18,8 +18,7 @@ POST http://localhost:8080/finance/user
 Content-Type: application/json
 
 {
-  "userId": 1,
-  "id": 8,
+  "id": 7,
   "financeType": "INCOME",
   "tag": "salary",
   "invDt": "2023-12-23",
@@ -29,10 +28,8 @@ Content-Type: application/json
 ### All the Finances
 GET http://localhost:8080/finance/user-finances
 
-
-
 ### Specific Finance 
-GET http://localhost:8080/finance/user/11
+GET http://localhost:8080/finance/user/8
 
 ###
 GET http://localhost:8080/budget/income/salary/sum
@@ -44,4 +41,4 @@ GET http://localhost:8080/finance/total-income
 GET http://localhost:8080/finance/total-expenses
 
 ###
-GET http://localhost:8080/finance/summary
+DELETE http://localhost:8080/finance/delete/2

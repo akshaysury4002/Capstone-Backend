@@ -2,10 +2,8 @@ package com.sac.project.service;
 
 import java.util.List;
 
-import com.sac.project.domain.User;
 import com.sac.project.dto.FinanceDto;
 import com.sac.project.exception.UserNotFoundException;
-import com.sac.project.util.FinanceType;
 import com.sac.project.exception.FinanceNotFoundException;
 import com.sac.project.dto.FinanceUserDto;
 

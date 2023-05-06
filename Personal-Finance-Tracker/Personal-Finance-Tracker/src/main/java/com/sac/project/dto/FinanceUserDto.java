@@ -2,6 +2,7 @@ package com.sac.project.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sac.project.util.FinanceType;
 
 import lombok.AllArgsConstructor;
@@ -19,5 +20,6 @@ public class FinanceUserDto {
     private FinanceType financeType;
     private String Tag;
     private Double amt;
+    @JsonIgnore
     private Long userId;
 }

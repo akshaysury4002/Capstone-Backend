@@ -3,8 +3,7 @@ package com.sac.project.controller;
 
 import java.util.List;
 
-import javax.persistence.Id;
-import javax.swing.text.html.HTML.Tag;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -18,17 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sac.project.domain.User;
 import com.sac.project.dto.FinanceDto;
 import com.sac.project.dto.FinanceUserDto;
 import com.sac.project.repository.FinanceRepository;
 import com.sac.project.service.FinanceService;
-import com.sac.project.service.UserService;
 import com.sac.project.util.AppResponse;
-import com.sac.project.util.FinanceType;
 
 import lombok.AllArgsConstructor;
 
@@ -39,7 +34,6 @@ import lombok.AllArgsConstructor;
 public class FinanceController {
 
     private final FinanceService service;
-    private final FinanceRepository repository;
 
     
     @CrossOrigin
@@ -87,8 +81,8 @@ public class FinanceController {
 
 
     @CrossOrigin
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> deleteInvoice(@PathVariable Long id) {
+    @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> deleteFinance(@PathVariable Long id) {
 
         final Integer sts = service.deleteFinance(id);
 
@@ -117,7 +111,7 @@ public class FinanceController {
     
     @CrossOrigin
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<FinanceDto>>> allCustomerFinances(@PathVariable Long id) {
+    public ResponseEntity<AppResponse<List<FinanceDto>>> allUserFinances(@PathVariable Long id) {
         List<FinanceDto> finances = service.allUserFInances(id);
 
         AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
