@@ -3,6 +3,8 @@ package com.sac.project.controller;
 
 import java.util.List;
 
+import javax.persistence.Id;
+import javax.swing.text.html.HTML.Tag;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -139,17 +141,6 @@ public class FinanceController {
         return service.getTotalExpenses();
     }
 
-    @CrossOrigin
-    @GetMapping(value = "/tag", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<Object[]>>> getFinanceByTag(@PathVariable Long userId) {
-        List<Object[]> result = service.findTotalAmountByTagAndType(FinanceType.INCOME);
-        AppResponse<List<Object[]>> response = AppResponse.<List<Object[]>>builder()
-                                                        .sts("success")
-                                                        .msg("Total amount by tag")
-                                                        .bd(result)
-                                                        .build();
-        return ResponseEntity.ok().body(response);
-    }
 
 
     @CrossOrigin

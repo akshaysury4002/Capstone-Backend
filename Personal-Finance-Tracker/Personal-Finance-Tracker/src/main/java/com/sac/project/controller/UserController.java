@@ -33,4 +33,9 @@ public class UserController {
     public Status logUserOut(@Valid @RequestBody UserDTO userDto) {
         return userService.logUserOut(userDto);
     }
+
+    @PostMapping("/forgot")
+    public Status findUserByEmail(@RequestBody UserDTO userDto){
+        return userService.findByEmail(userDto);
+    }
 }

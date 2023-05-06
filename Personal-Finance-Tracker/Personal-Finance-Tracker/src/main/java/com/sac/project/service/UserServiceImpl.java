@@ -61,4 +61,14 @@ public class UserServiceImpl implements UserService {
 
         return Status.FAILURE;
     }
+
+    @Override
+    public Status findByEmail(UserDTO userDTO){
+        Optional<User> userOptional = userRepository.findByEmail(userDTO.getEmail());
+        if (userOptional.isPresent()) {
+            return Status.SUCCESS;
+
+    }
+    return Status.FAILURE;
+}
 }

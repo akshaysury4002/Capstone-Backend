@@ -2,9 +2,9 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-"name":"gettok",
-"email": "ussser3323id1@gmail.com",
-"password": "yello"
+"name":"yellow",
+"email": "testing@gmail.com",
+"password": "testingit"
 }
 
 ###
@@ -22,9 +22,16 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-"email": "getwell1",
-"password": "jla;f;a"
+"email": "yellow@gmail.com",
+"password": "yelloviw"
 }
 ###
 DELETE http://localhost:8080/users/all
 
+### Forgot Password
+POST http://localhost:8080/users/forgot
+Content-Type: application/json
+
+{
+"email": "yellow@gmaiom"
+}

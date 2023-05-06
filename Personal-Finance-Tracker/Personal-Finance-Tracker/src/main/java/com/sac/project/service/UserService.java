@@ -8,5 +8,6 @@ public interface UserService {
     Status registerUser(UserDTO userDto);
     Status loginUser(UserDTO userDto);
     Status logUserOut(UserDTO userDto);
+    Status findByEmail(UserDTO userDto);
 }
 
