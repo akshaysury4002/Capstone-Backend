@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sac.project.domain.User;
 import com.sac.project.util.FinanceType;
 
 import lombok.AllArgsConstructor;
@@ -36,6 +37,7 @@ public class FinanceDto {
 
     @NotNull(message = "amt cannot be null")
     private Double amt;
-    @JsonIgnore
-    private UserDTO userDto;
+
+    UserDTO userDto;
+
 }

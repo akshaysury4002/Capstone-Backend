@@ -15,11 +15,10 @@ import lombok.Setter;
 @Setter
 @Getter
 public class FinanceUserDto {
-    private Long id;
+    private String client;
     private LocalDate invDt;
     private FinanceType financeType;
     private String Tag;
     private Double amt;
-    @JsonIgnore
     private Long userId;
 }

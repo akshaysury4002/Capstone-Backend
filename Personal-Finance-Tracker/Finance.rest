@@ -1,24 +1,33 @@
-
-### Add a finance info 
-POST http://localhost:8080/finance/user
+POST http://localhost:8080/finance/user HTTP/1.1
 Content-Type: application/json
 
 {
-  "userId": 1,
-  "id": 10,
-  "financeType": "EXPENSES",
-  "tag": "investment",
-  "invDt": "2023-12-23",
-  "amt": 2300
+    "id" : 1,
+    "invDt": "2022-01-01",
+    "financeType": "INCOME",
+    "tag": "salary",
+    "amt": 5000.0,
+    "userId" : 1
 }
 
+POST http://localhost:8080/finance/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "id" : 1,
+    "invDt": "2022-01-01",
+    "financeType": "INCOME",
+    "tag": "salary",
+    "amt": 5000.0,
+    "userId" : 1
+}
 
 ### update a Finance tag
 POST http://localhost:8080/finance/user
 Content-Type: application/json
 
 {
-  "id": 7,
+  "id": 1,
   "financeType": "INCOME",
   "tag": "salary",
   "invDt": "2023-12-23",

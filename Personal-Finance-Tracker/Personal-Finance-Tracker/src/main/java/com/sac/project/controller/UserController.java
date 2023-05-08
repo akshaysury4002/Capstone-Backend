@@ -3,7 +3,6 @@ package com.sac.project.controller;
 import com.sac.project.dto.UserDTO;
 import com.sac.project.service.UserService;
 import com.sac.project.util.Status;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,7 +13,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
