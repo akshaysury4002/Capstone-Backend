@@ -33,5 +33,5 @@ POST http://localhost:8080/users/forgot
 Content-Type: application/json
 
 {
-"email": "yellow@gmaiom"
+"email": "testing@gmail.com"
 }
