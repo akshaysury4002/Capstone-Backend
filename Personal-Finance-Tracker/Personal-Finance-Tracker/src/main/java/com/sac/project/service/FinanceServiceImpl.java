@@ -91,26 +91,9 @@ public class FinanceServiceImpl implements FinanceService {
         return repository.getTotalAmountByType(FinanceType.EXPENSES);
     }
 
-
-
     @Override
-    public Double getTotalIncomeByTagAndUser(String tag, Long userId) {
-        return repository.getTotalAmountByTypeAndTagAndUser(FinanceType.INCOME, tag, userId);
-}
-
-    @Override
-    public List<Object[]> findTotalAmountByTagAndType() {
-        return repository.findTotalAmountByTagAndType();
-    }
-
-
-
-    @Override
-    public List<FinanceDto> allUserFInances(Long id) throws UserNotFoundException {
-        return repository.findById(id)
-                        .stream()
-                        .map(mapper::toDto)
-                        .collect(Collectors.toList());
+    public List<User> allUserFinances(Long id) {
+        return repository.findAllUserById(id);
     }
 
 }

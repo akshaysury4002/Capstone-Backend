@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sac.project.domain.User;
 import com.sac.project.dto.FinanceDto;
 import com.sac.project.dto.FinanceUserDto;
 import com.sac.project.service.FinanceService;
@@ -26,7 +27,6 @@ import com.sac.project.util.AppResponse;
 
 import lombok.AllArgsConstructor;
 
-@CrossOrigin
 @AllArgsConstructor
 @RequestMapping(value = "/finance")
 @RestController
@@ -94,7 +94,7 @@ public class FinanceController {
         return ResponseEntity.status(200).body(response);
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+    @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<AppResponse<FinanceDto>> getFinanceById(@PathVariable Long id) {
 
         final FinanceDto dto = service.fetchFinanceDetails(id);
@@ -108,37 +108,38 @@ public class FinanceController {
     }
     
     
+    // @CrossOrigin
+    // @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    // public ResponseEntity<AppResponse<List<FinanceDto>>> allCustomerFinances(@PathVariable Long id) {
+    //     List<FinanceDto> finances = service.allUserFinances(id);
+
+    //     AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
+    //                                                         .sts("success")
+    //                                                         .msg("Users FInacne")
+    //                                                         .bd(finances)
+    //                                                         .build();
+
+    //     return ResponseEntity.ok().body(response);
+    // }
+
+
     @CrossOrigin
-    @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<FinanceDto>>> allCustomerFinances(@PathVariable Long id) {
-        List<FinanceDto> finances = service.allUserFInances(id);
-
-        AppResponse<List<FinanceDto>> response = AppResponse.<List<FinanceDto>>builder()
-                                                            .sts("success")
-                                                            .msg("Users FInacne")
-                                                            .bd(finances)
-                                                            .build();
-
-        return ResponseEntity.ok().body(response);
-    }
-
-
-
     @GetMapping("/total-income")
     public Double getTotalIncome() {
         return service.getTotalIncome();
     }
 
+    @CrossOrigin
     @GetMapping("/total-expenses")
     public Double getTotalExpenses() {
         return service.getTotalExpenses();
     }
 
-    @GetMapping("/tag")
-    public ResponseEntity<List<Object[]>> getIncomeByTag() {
-        List<Object[]> result = service.findTotalAmountByTagAndType();
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
+    // @GetMapping("/tag")
+    // public ResponseEntity<List<Object[]>> getIncomeByTag() {
+    //     List<Object[]> result = service.findTotalAmountByTagAndType();
+    //     return new ResponseEntity<>(result, HttpStatus.OK);
+    // }
 
 
     @CrossOrigin

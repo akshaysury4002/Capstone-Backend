@@ -9,7 +9,7 @@ Content-Type: application/json
     "amt": 5000.0,
     "userId" : 1
 }
-
+###
 POST http://localhost:8080/finance/user HTTP/1.1
 Content-Type: application/json
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 GET http://localhost:8080/finance/user-finances
 
 ### Specific Finance 
-GET http://localhost:8080/finance/user/8
+GET http://localhost:8080/finance/user/9
 
 ###
 GET http://localhost:8080/budget/income/salary/sum
@@ -51,3 +51,4 @@ GET http://localhost:8080/finance/total-expenses
 
 ###
 DELETE http://localhost:8080/finance/delete/2
+
