@@ -7,17 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class SavingsUserDto {
-
+public class BudgetUserDto {
     private String category;
-    private Double goal;
-    private Double currAmt;
-    private LocalDate processedDate;
-    private LocalDate target;
+    private Double amt;
+    private Boolean recurring;
+    private LocalDate starDate;
+    private LocalDate endDate;
+
     private Long userId;
-    
 }

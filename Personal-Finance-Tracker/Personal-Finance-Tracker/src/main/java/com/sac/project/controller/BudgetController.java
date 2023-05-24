@@ -2,8 +2,6 @@ package com.sac.project.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,30 +15,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sac.project.dto.SavingsDto;
-import com.sac.project.dto.SavingsUserDto;
-import com.sac.project.service.SavingsService;
+import com.sac.project.dto.BudgetDto;
+import com.sac.project.dto.BudgetUserDto;
+import com.sac.project.service.BudgetService;
 import com.sac.project.util.AppResponse;
 
 import lombok.AllArgsConstructor;
 
-@CrossOrigin
-@AllArgsConstructor
-@RequestMapping(value = "/savings")
-@RestController
-public class SavingsController {
 
-    private final SavingsService service;
+@AllArgsConstructor
+@RequestMapping(value = "/budget")
+@RestController
+public class BudgetController {
+    
+    private final BudgetService service;
     
     @CrossOrigin
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> createNewSavings( @RequestBody SavingsDto dto) {
+    public ResponseEntity<AppResponse<Integer>> createNewSavings( @RequestBody BudgetDto dto) {
 
-        final Integer sts = service.createNewSavings(dto);
+        final Integer sts = service.createNewBudget(dto);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
-                                                    .msg("finance added Successfully")
+                                                    .msg("budget added Successfully")
                                                     .bd(sts)
                                                     .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -49,13 +47,13 @@ public class SavingsController {
 
     @CrossOrigin
     @PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> createNewUSerSavings(@Valid @RequestBody SavingsUserDto dto) {
+    public ResponseEntity<AppResponse<Integer>> createNewUSerBudget( @RequestBody BudgetUserDto dto) {
 
-        final Integer sts = service.createNewSavings(dto);
+        final Integer sts = service.createNewBudget(dto);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
-                                                    .msg("Finance added Successfully")
+                                                    .msg("Budget added Successfully")
                                                     .bd(sts)
                                                     .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -63,10 +61,10 @@ public class SavingsController {
 
     @CrossOrigin
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<SavingsDto>>> allSavings() {
-        List<SavingsDto> finances = service.all();
+    public ResponseEntity<AppResponse<List<BudgetDto>>> allBudgets() {
+        List<BudgetDto> finances = service.all();
 
-        AppResponse<List<SavingsDto>> response = AppResponse.<List<SavingsDto>>builder()
+        AppResponse<List<BudgetDto>> response = AppResponse.<List<BudgetDto>>builder()
                                                             .sts("success")
                                                             .msg("this ones working")
                                                             .bd(finances)
@@ -76,13 +74,13 @@ public class SavingsController {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> deleteSavings(@PathVariable Long id) {
+    public ResponseEntity<AppResponse<Integer>> deleteBudget(@PathVariable Long id) {
 
-        final Integer sts = service.deleteSavings(id);
+        final Integer sts = service.deleteBudget(id);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
             .sts("success")
-            .msg("Finance Deleted Successfully")
+            .msg("Budget Deleted Successfully")
             .bd(sts)
             .build();
 
@@ -90,25 +88,25 @@ public class SavingsController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<AppResponse<SavingsDto>> getSavingsById(@PathVariable Long id) {
+    public ResponseEntity<AppResponse<BudgetDto>> getSavingsById(@PathVariable Long id) {
 
-        final SavingsDto dto = service.fetchSavingsDetails(id);
+        final BudgetDto dto = service.fetchBudgetDetails(id);
 
-        final AppResponse<SavingsDto> response = AppResponse.<SavingsDto>builder()
+        final AppResponse<BudgetDto> response = AppResponse.<BudgetDto>builder()
                                                         .sts("success")
-                                                        .msg("FInancial Details")
+                                                        .msg("Budget Details")
                                                         .bd(dto)
                                                         .build();
         return ResponseEntity.ok().body(response);
     }
 
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<SavingsDto>>> allUserSavings(@PathVariable Long id) {
-        List<SavingsDto> savings = service.allUserSavings(id);
+    public ResponseEntity<AppResponse<List<BudgetDto>>> allUserSavings(@PathVariable Long id) {
+        List<BudgetDto> savings = service.allUserBudget(id);
 
-        AppResponse<List<SavingsDto>> response = AppResponse.<List<SavingsDto>>builder()
+        AppResponse<List<BudgetDto>> response = AppResponse.<List<BudgetDto>>builder()
                                                             .sts("success")
-                                                            .msg("Users FInacne")
+                                                            .msg("Users Budget")
                                                             .bd(savings)
                                                             .build();
 
@@ -117,17 +115,16 @@ public class SavingsController {
 
     @CrossOrigin
     @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> updateNewSavings(@Valid @RequestBody SavingsDto dto) {
+    public ResponseEntity<AppResponse<Integer>> updateNewSavings( @RequestBody BudgetDto dto) {
 
-        final Integer sts = service.updateSavings(dto);
+        final Integer sts = service.updateBudget(dto);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
-                                                    .msg("Finance Updated Successfully")
+                                                    .msg("Budget Updated Successfully")
                                                     .bd(sts)
                                                     .build();
 
         return ResponseEntity.ok().body(response);
     }
 }
-

@@ -25,12 +25,13 @@ import lombok.ToString;
 
 @Entity
 @Builder
-@Table(name = "savings")
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Table(name = "savings")
 public class Savings {
 
     @Id // primary key
