@@ -23,16 +23,10 @@ import lombok.ToString;
 public class BudgetDto {
 
     private Long id;
-
-
-
     private String category;
     private Double amount;
     private Boolean recurring;
     private LocalDate startDate;
     private LocalDate endDate;
-    
-    private UserDTO userDto;  
-
-    
+    private UserDTO userDto;   
 }

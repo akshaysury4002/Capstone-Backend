@@ -33,7 +33,7 @@ Content-Type: application/json
 ###all the savings
 GET http://localhost:8080/savings/
   
-### updating by user id 
+### updating by user id w
 POST http://localhost:8080/savings/user
 Content-Type: application/json
 
@@ -61,7 +61,21 @@ Content-Type: application/json
     "email": "johndoe@example.com"
   }
 }
- 
+### 
+PUT http://localhost:8080/savings/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "category": "Vacation",
+  "goal": 6000.0,
+  "currAmt": 3000.0,
+  "target": "2023-12-31",
+  "userDto":{
+    "id":1
+  }
+
+}
 ### deleting by service id 
 DELETE http://localhost:8080/savings/49
 
